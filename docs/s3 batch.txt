@@ -1,0 +1,1 @@
+aws s3 cp s3://docs.auth2factor.com/ s3://docs.auth2factor.com/ --exclude "*" --include "*.css" --include "*.woff2" --include "*.woff" --include "*.eot" --include "*.ttf" --include "*.jpg" --include "*.png" --recursive --metadata-directive REPLACE --expires 2100-01-01T00:00:00Z --acl public-read --cache-control max-age=2592000,public

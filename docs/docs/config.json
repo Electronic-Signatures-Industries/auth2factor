@@ -1,0 +1,19 @@
+{
+    "title": "auth2factor",
+    "tagline": "OTP and U2F management",
+    "author": "Rogelio Morrell",
+    "theme": "daux-navy",
+    "template": "default",
+    "clean_urls": true,
+    "toggle_code": true,
+    "breadcrumbs": true,
+    "breadcrumb_separator": " : ",
+    "date_modified": true,
+    "float": false,
+    "file_editor": false,
+
+    "ignore": {
+            "files": ["Work_In_Progress.md"],
+            "folders": ["99_Not_Ready"]
+    }
+}
