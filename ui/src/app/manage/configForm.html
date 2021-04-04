@@ -1,0 +1,236 @@
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="col-sm-10 col-md-10">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                        <h1 class="box-title">{{ vm.typeLabel }}
+                <small>
+                <i class="fa fa-angle-double-right"></i>
+                    {{ vm.key || 'Nuevo' }}
+                </small>                    
+                </h1>
+                    </div>
+                    <!-- /.box-header -->
+                    <div ng-class="{ alert:true, 'alert-danger':true }" ng-if="vm.hasErrors" role="alert">{{ vm.errorLabel }}</div>
+                    <div class="box-body">
+                        <form role="form" name="form" novalidate>
+                            <div class="form-group" ng-if="!vm.canEdit">
+                                <label for="key">Llave</label>
+                                <input class="form-control  input-sm" type="text" ng-model="formulario.key" name="key" placeholder="Ingrese llave" maxlength="24" ng-pattern="/^[0-9a-zA-Z:_\.]+$/" required ng-readonly="vm.canEdit">
+                                <div class="has-error" ng-if="form.$submitted || form.key.$dirty" ng-messages="form.key.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                    <div class="help-block" ng-message="pattern">Solo puede incluir alfanuméricos, punto (.), rayita (_) y dos puntos (:).</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Descripción</label>
+                                <input class="form-control  input-sm" type="text" ng-model="formulario.description" name="description" placeholder="Ingrese descripcion" required>
+                                <div class="has-error" ng-if="form.$submitted || form.description.$dirty" ng-messages="form.description.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="vm.transports">
+                                <div class="row">
+                                    <label for="transport">Transporte</label>
+
+                                    <select name="transport" ng-model="formulario.transport" class="form-control input-sm"  ng-readonly="vm.canEdit">
+                                        <option ng-repeat="item in vm.transports" ng-disabled="vm.canEdit"  value="{{ ::item.transport }}">{{ ::item.description}}</option>
+                                    </select>
+                                </div>
+                            </div> 
+                            <div class="form-group" ng-if="vm.adapters">
+                                <div class="row">
+                                    <label for="adapter">Adaptador</label>
+
+                                    <select name="adapter" ng-model="formulario.adapter" class="form-control input-sm" ng-readonly="vm.canEdit">
+                                        <option ng-disabled="vm.canEdit" ng-repeat="item in vm.adapters" value="{{ ::item.adapter }}">{{ ::item.description}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div ng-if="formulario.adapter==='ldap:ldap'">
+                                <div class="form-group" ng-if="formulario.adapter==='ldap:ldap'">
+                                    <label for="url">Url</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.url" name="url" placeholder="Ingrese url" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.url.$dirty" ng-messages="form.url.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="baseDN">baseDN</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.baseDN" name="baseDN" placeholder="Ingrese baseDN" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.baseDN.$dirty" ng-messages="form.baseDN.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.username" name="username" placeholder="Ingrese username" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.username.$dirty" ng-messages="form.username.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control  input-sm" type="text" ng-model="formulario.settings.password" name="password" placeholder="Ingrese password" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.password.$dirty" ng-messages="form.password.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="formulario.transport==='sms:twilio'">
+                                <div class="form-group">
+                                    <label for="fromNumber">Número de Twilio</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.fromNumber" name="fromNumber" placeholder="Ingrese fromNumber" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.fromNumber.$dirty" ng-messages="form.fromNumber.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SID">SID</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.SID" name="SID" placeholder="Ingrese SID" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.SID.$dirty" ng-messages="form.SID.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="token">Token</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.token" name="token" placeholder="Ingrese token" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.token.$dirty" ng-messages="form.token.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="formulario.transport==='email:sendgrid'">
+                                <div class="form-group">
+                                    <label for="user">Usuario</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.user" name="user" placeholder="Ingrese user" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.user.$dirty" ng-messages="form.user.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apiKey">Llave de API</label>
+                                    <input class="form-control  input-sm" type="password" ng-model="formulario.settings.apiKey" name="apiKey" placeholder="Ingrese apiKey" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.apiKey.$dirty" ng-messages="form.apiKey.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="formulario.transport==='email:smtp'">
+                                <div class="form-group">
+                                    <label for="host">Host</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.host" name="host" placeholder="Ingrese host" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.host.$dirty" ng-messages="form.host.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="port">Puerto</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.port" name="port" placeholder="Ingrese puerto" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.port.$dirty" ng-messages="form.port.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user">Usuario</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.user" name="user" placeholder="Ingrese usuario" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.user.$dirty" ng-messages="form.user.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control  input-sm" ng-model="formulario.settings.password" name="password" placeholder="Ingrese password" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.password.$dirty" ng-messages="form.password.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="serviceType" class="col-sm-1">Seguridad</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="togglebutton">
+                                                <div>
+                                                    <label>
+                                                        <input type="checkbox" ng-model="formulario.settings.secure" name="secure" checked=""><span class="toggle"></span> SSL
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label>
+                                                        <input type="checkbox" ng-model="formulario.settings.tls" name="tls" checked=""><span class="toggle"></span> TLS
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="!vm.entity && !formulario.settings.license">
+                                <label for="value">Valor</label>
+                                <input class="form-control  input-sm" type="text" ng-model="formulario.settings.value" name="value" placeholder="Ingrese valor" required>
+                                <div class="has-error" ng-if="form.$submitted || form.value.$dirty" ng-messages="form.value.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="formulario.settings && formulario.settings.license">
+                                <label for="license">Licencia</label>
+                                <textarea rows="6" class="form-control  input-sm" ng-model="formulario.settings.license" name="license" placeholder="Ingrese licencia" required></textarea>
+                                <div class="has-error" ng-if="form.$submitted || form.license.$dirty" ng-messages="form.license.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>
+                            <div ng-if="vm.key === 'default:system:env'">
+                                <div class="form-group">
+                                    <label for="ip">Timeout de confirmación</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.confirmationTokenTimeout" name="confirmationTokenTimeout" placeholder="Ingrese timeout" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.confirmationTokenTimeout.$dirty" ng-messages="form.confirmationTokenTimeout.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailTransport">Transporte de correo predeterminado</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.emailTransport" name="emailTransport" placeholder="Ingrese transporte" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.emailTransport.$dirty" ng-messages="form.emailTransport.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resetConfirmCodeTransport">Transporte de restablecimiento predeterminado</label>
+                                    <input class="form-control  input-sm" type="text" ng-model="formulario.settings.resetConfirmCodeTransport" name="resetConfirmCodeTransport" placeholder="Ingrese transporte" required>
+                                    <div class="has-error" ng-if="form.$submitted || form.resetConfirmCodeTransport.$dirty" ng-messages="form.resetConfirmCodeTransport.$error">
+                                        <div class="help-block" ng-message="required">Requerido.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-3 col-md-3 col-sm-offset-1 col-md-offset-2">
+                                        <button class="btn btn-sm btn-primary" ng-click="vm.save(form, formulario)">
+                                            <i class="icon-ok"></i> Guardar
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-sm-offset-1">
+                                        <button class="btn btn-sm" ng-click="vm.cancel()">
+                                            <i class="icon-remove"></i> Cancelar
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- PAGE CONTENT ENDS -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.page-content -->

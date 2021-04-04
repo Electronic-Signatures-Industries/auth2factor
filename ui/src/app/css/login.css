@@ -1,0 +1,19 @@
+.credentials-body {
+    background: #DAE3E7;
+}
+
+.credentials-header {
+    color: #98B6B6;
+    background: #21272D;
+}
+.forgot-link {
+  margin-top: 25px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.request-otc-link {
+  margin-top: 25px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}

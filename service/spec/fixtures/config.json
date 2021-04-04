@@ -1,0 +1,11 @@
+[{
+    "_id" : "5798e7c44b1d1a8e50419da1",
+    "settings": [{}],
+    "key" : "license",
+    "description" : "Licencia de 20 usuarios",
+    "updated" : "2016-07-27T16:56:36.866Z",
+    "created" : "2016-07-27T16:56:36.741Z",
+    "deletable" : false,
+    "entity" : "config",
+    "__v" : 0
+}]

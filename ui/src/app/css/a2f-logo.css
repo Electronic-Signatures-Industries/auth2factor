@@ -1,0 +1,38 @@
+h1.logo-white-bg {
+	font-family: Amaranth;
+	font-size: 26px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 26.3999996185303px;
+    color: #001F3F;
+}
+
+h3 .logo-white-bg {
+	font-family: Amaranth;
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.3999996185303px;
+    color: #001F3F;
+}
+
+.logo-color-bg-lg {
+	font-family: Amaranth;
+	font-size: 26px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	
+    color: #fff;
+}
+
+.logo-color-bg-sm {
+	font-family: Amaranth;
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+    color: #fff;
+}

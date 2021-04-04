@@ -1,0 +1,9 @@
+{
+    "name": "mailCompiler",
+    "version": "1.0.0",
+    "dependencies": {
+    "debug": "~2.1.0",
+    "handlebars": "^3.0.3",
+    "underscore": "^1.7.0"
+    }
+}

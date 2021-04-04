@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "name": "API",
+            "program": "${workspaceRoot}/service/lib/hapi/index.js",
+            "env": {
+                "JWT_SECRET": "K12lfIxap9Zu5J53t9Zo2r5BVJAW1jA1c24",
+                "FE_HOSTNAME": "https://localhost",
+                "MONGODB_CONFIG": "mongodb://localhost/auth2factor",
+                "MONGOOSE_SECRET": "scgY8qL7auf26/2Kudat3ZIbmxJJ4UJjZyABF9+j0Ni1vJi11Mpnc3z4MD2TwgNd9EqJLiA2ReunyH8jbcM1+w=="
+            }
+        }
+    ]
+}

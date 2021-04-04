@@ -1,0 +1,7 @@
+{
+    "name": "licenseEngine",
+    "version": "1.0.0",
+    "dependencies": {
+        "debug": "~2.1.0"
+    }
+}

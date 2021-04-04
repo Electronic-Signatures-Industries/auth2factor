@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-lg-11 col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Integraciones</h3>
+            </div>
+            <!-- /.box-header -->
+
+
+            <div class="box-body no-padding">
+
+<div grid-toolbar source="vm.tableParams" refresh="vm.refresh">
+    <ul class="nav nav-pills pull-left">              
+        <li>
+                            <button class="btn btn-primary" href="" ng-click="vm.addAPIKey()">
+                                <strong>Agregar API token</strong>
+                            </button>            
+        </li>                            
+    </ul>
+</div>
+            <div ng-show="vm.configuration.length == 0">
+                <h3>No hay integraciones</h3>
+            </div>
+<table ng-table="vm.tableParams" class="table table-responsive" ng-show="vm.configuration.length > 0">
+    <colgroup>
+        <col width="100px" />
+        <col width="120px" />
+        <col width="120px" />
+        <col width="120px" />
+        <col width="100px" />
+    </colgroup>
+    <tr ng-repeat="item in $data">
+        <td title="'ID'" filter="{ key: 'text'}" sortable="'key'">
+            {{ item.key }}</td>
+        <td title="'Descripción'" filter="{ description: 'text'}" sortable="'description'">
+            {{ item.description }}</td>
+        <td title="'Atributos'" filter="{ 'settings.ip': 'text'}">
+            <div><b>IP</b>: {{ item.settings.ip }}</div>
+            <div ng-if="item.settings.u2fAppId"><b>AppId</b>: {{ item.settings.u2fAppId }}</div>
+            <div ng-if="item.settings.acl"><b>Permisos</b>: {{ item.settings.acl.items.length}} items</div>
+        </td>
+        <td title="'Creado'" filter="{ created: 'text'}" sortable="'created'">
+            {{ item.created | date: 'dd/MM/yyyy hh:mm' }}</td>
+        <td>
+            <ul class="nav nav-pills pull-left">
+                <li>
+                <button class="btn btn-sm btn-default" ng-click="vm.edit(item)">
+                  <i class="fa fa-pencil-square-o"></i>
+                </button>
+                </li>
+                <li ng-show="item.deletable">
+                <button class="btn btn-sm btn-default" ng-click="vm.delete(item)">
+                  <i class="fa fa-remove"></i>
+                </button>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+              </div>
+        </div>
+</div>

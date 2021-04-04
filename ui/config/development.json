@@ -1,0 +1,17 @@
+{
+  "feServer": {
+    "host": "localhost",
+    "port": 3005
+  },
+  "apiServer": {
+    "host": "localhost",
+    "port": 3002
+  },    
+  "logger": {
+    "filename": "logs/dev.log",
+    "level": "silly"
+  },
+  "frontendServer": {
+    "hostname": "http://localhost"
+  }    
+}

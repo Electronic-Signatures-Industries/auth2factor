@@ -1,0 +1,186 @@
+/*@import 'font-awesome.css';
+@import 'nivo-lightbox.css';*/
+/*@import 'bootstrap.css';
+@import 'bootstrap-theme.css';
+@import 'animate.css';
+@import 'default.css';*/
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+/*@import url("http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic");*/
+
+/* ========== GENERAL STYLES ========== */
+
+body {
+	font-size: 13px;
+	color: #222;
+	background-color: #fff;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+}
+.doc-loader{
+	position: fixed; 
+	left: 0; 
+	top: 0; 
+	width: 100%; 
+	height: 100%; 
+	overflow: visible;
+	background: #ffffff url('../img/loading.gif') no-repeat center center;
+	z-index: 100000;
+}
+
+.doc-loader td{
+	vertical-align: middle;
+	text-align: center;
+	background-color: #fff;
+}
+header {
+	z-index: 1000;
+	position: relative;
+	width: 100%;
+	padding-top: 50px;
+}
+.centered
+{
+    text-align:center;
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1000px;
+   }
+}
+footer {
+	background: #34495e;
+	color: #fff;
+	padding: 70px 0;
+	text-align: center;
+}
+footer p {
+	font-size: 15px;
+	line-height: 20px;
+}
+/* ========== MEDIA QUIRIES ========== */
+@media screen and (max-width:500px) {
+header {
+	padding-top: 20px;
+}
+#intro {
+	padding-bottom: 50px;
+}
+#intro h1 {
+	font-size: 18px;
+	line-height: 22px;
+}
+#intro h2 {
+	font-size: 14px;
+	line-height: 18px;
+}
+.intro-well{
+	padding-top: 0;
+}
+#features {
+	padding-top: 50px;
+}
+.more-features {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.features-right {
+	padding-top: 0;
+}
+.features-left {
+	padding-top: 0;
+}
+#newsletter {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+#newsletter form {
+	margin-top: 20px;
+}
+#newsletter form input {
+	width: auto;
+}
+#newsletter h3 {
+	font-size: 18px;
+	line-height: 28px;
+}
+#screenshots {
+	padding-top: 50px;
+	padding-bottom: 0px;
+}
+#screenshots h2 {
+	padding-bottom: 30px;
+}
+.social-links {
+	padding-left: 0;
+}
+
+}
+@media only screen and (device-width: 990px){
+	.intro-well {
+		padding-top: 50px;
+	}
+	.features-right {
+		padding-top: 10px; 
+	}
+	.features-left {
+		padding-top: 10px;
+	}
+
+}
+@media all and (width: 768px) {
+	.container {
+	max-width: 730px !important;
+	}
+	#intro {
+	padding-bottom: 100px;
+	}
+	.intro-well {
+	padding-top: 20px;
+	}
+	#intro h1 {
+	font-size: 48px;
+	line-height: 48px;
+	}
+	#intro h2 {
+	font-size: 18px;
+	line-height: 22px;
+	}
+	#iphone {
+	padding-top: 30px;
+	}
+	.features-right {
+	padding-top: 30px;
+	}
+	.features-left {
+	padding-top: 30px;
+	}	
+	.more-features {
+	padding-top: 15px;
+	padding-bottom: 50px;
+	}
+	#newsletter {
+	padding-top: 50px;
+	padding-bottom: 40px;
+	}
+	#newsletter h3 {
+	font-size: 30px;
+	line-height: 38px;
+	}
+	#screenshots {
+	padding-bottom: 30px;
+	}
+	.icnp {
+	padding-bottom: 20px;
+	}
+}
+
+@media (max-width: 767px) { 
+    .navbar-brand {
+        padding: 0;        
+    }
+
+    .navbar-brand img {
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+}

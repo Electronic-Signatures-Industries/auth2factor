@@ -1,0 +1,89 @@
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="col-sm-10 col-md-10">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                        <h1 class="box-title">Grupo
+                <small>
+                <i class="fa fa-angle-double-right"></i>
+                    {{ vm.group || 'Nuevo' }}
+                </small>                    
+                </h1>
+                    </div>
+                    <!-- /.box-header -->
+                    <div ng-class="{ alert:true, 'alert-danger':true }" ng-if="vm.hasErrors" role="alert">{{ vm.errorLabel }}</div>
+                    <div class="box-body">
+                        <form role="form" name="form" novalidate>
+                            <div class="form-group" ng-if="!vm.canEdit">
+                                <label for="group">Nombre</label>
+                                <input class="form-control  input-sm" required type="text" ng-model="formulario.group" name="group" maxlength="12" ng-pattern="/^[0-9a-zA-Z:_\.]+$/" placeholder="Ingrese nombre de grupo" ng-readonly="vm.canEdit">
+                                <div class="has-error" ng-if="form.$submitted || form.group.$dirty" ng-messages="form.group.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                    <div class="help-block" ng-message="pattern">Solo puede incluir alfanumericos, punto (.), rayita (_) y dos puntos (:).</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Descripción</label>
+                                <input class="form-control  input-sm" type="text" ng-model="formulario.description" name="description" placeholder="Ingrese descripcion" required>
+                                <div class="has-error" ng-if="form.$submitted || form.description.$dirty" ng-messages="form.description.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" ng-if="!vm.transports">
+No hay adaptadores transportes
+                                </div>                                
+                                <div class="row">
+                                    <label for="transport">Transporte</label>
+
+                                    <select name="transport" ng-model="formulario.transport.id" class="form-control input-sm">
+                                        <option ng-repeat="item in vm.transports" value="{{ ::item.key}}">{{ ::item.description}}</option>
+                                    </select>
+                                </div>
+                            </div>                             
+                            <div class="form-group">
+                                <div class="row" ng-if="!vm.adapters">
+No hay adaptadores configurados
+                                </div>                                
+<!--
+                                <div class="row">
+                                    <label for="adapter">Adaptador</label>
+
+                                    <select ng-readonly="true" name="adapter" ng-model="formulario.adapter.id" class="form-control input-sm">
+                                        <option ng-readonly="true" ng-repeat="item in vm.adapters" value="{{ ::item.key}}">{{ ::item.description}}</option>
+                                    </select>
+                                </div>
+                            </div>                            
+-->
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-3 col-md-3 col-sm-offset-1 col-md-offset-2">
+                                        <button class="btn btn-sm btn-primary" ng-click="vm.save(form, formulario)">
+                                            <i class="icon-ok"></i> Guardar
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-sm-offset-1">
+                                        <button class="btn btn-sm" ng-click="vm.cancel()">
+                                            <i class="icon-remove"></i> Cancelar
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- PAGE CONTENT ENDS -->
+
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+</div>
+<!-- /.page-content -->

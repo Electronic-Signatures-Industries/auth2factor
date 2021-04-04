@@ -1,0 +1,53 @@
+version: '2'
+services:            
+    a2f_app_ui:
+        network_mode: "host"
+        image: auth2factor/ui:2.6.0
+        # links: 
+        #     - api
+        volumes_from:
+            - shared
+        expose:
+            - 3005
+        ports: 
+            - "3005"   
+        #hostname: localhost
+        restart: always
+        env_file: app.env  
+        labels:
+            com.auth2factor.role: "a2f-ui"
+
+
+    api:
+        network_mode: "host"            
+        image: auth2factor/api:2.6.0
+        volumes_from:
+            - shared
+        expose:
+            - 3002
+        ports: 
+            - "3002"
+        #hostname: localhost
+        restart: always
+        env_file: app.env  
+        labels:
+            com.auth2factor.role: "a2f-service"
+
+    shared:
+        network_mode: "host"
+        image: auth2factor/shared:2.6.0
+        env_file: app.env
+
+    # proxy:
+    #     build: ./shared/devops/nginx
+    #     ports:
+    #         - "8080:80"
+    #         #- "8443:443"
+    #     volumes_from:
+    #         - a2f_app_ui    
+    #     links:
+    #         - api
+    #         - a2f_app_ui
+    #     restart: always
+    #     labels:
+    #         com.auth2factor.role: "nginx-proxy" 

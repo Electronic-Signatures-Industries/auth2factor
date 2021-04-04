@@ -1,0 +1,34 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+/* ======= Profile Section ======= */
+.profile {
+  padding: 70px 0;
+}
+
+.grid {
+    width: 100%;
+    height: 200px;
+}
+
+.profile-description {
+  font-weight: bold;
+}
+
+.profile-center {
+  margin-top: 9px;
+  margin-bottom: auto;
+}
+
+.profile-row-item {
+  padding: 5px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #ddd;
+}
+
+.profile-row-header {
+  padding: 5px;
+}
+
+.profile-password-button {    
+ margin-top: 75px;   
+}

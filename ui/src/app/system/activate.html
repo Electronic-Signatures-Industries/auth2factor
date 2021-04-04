@@ -1,0 +1,55 @@
+<div class="page-content">
+<div class="row">
+        <div class="col-sm-12 col-md-12">
+            <form role="form" name="form" novalidate>
+                <!-- PAGE CONTENT BEGINS -->
+                <div class="page-header">
+                    <h1>Registro y activación
+                </h1>
+                </div>
+
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Licencia</label>
+                        <div class="row">
+                            <textarea required ng-model="formulario.license" cols="50" rows="15" name="license"></textarea>
+                            <div class="has-error" ng-if="form.$submitted || form.license.$dirty" ng-messages="form.license.$error">
+                                <div class="help-block" ng-message="required">Requerido.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div>
+                                <button class="btn btn-sm btn-primary" ng-click="vm.activate(form, formulario)">
+                                    <i class="icon-ok"></i> Activar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+
+                    <div class="form-group">
+                        <label>Configuración</label>
+                        <div class="row">
+                            <textarea ng-model="formulario.actionConfig" required cols="50" rows="15" name="actionConfig"></textarea>
+                            <div class="has-error" ng-if="form.$submitted || form.actionConfig.$dirty" ng-messages="form.actionConfig.$error">
+                                <div class="help-block" ng-message="required">Requerido.</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- PAGE CONTENT ENDS -->
+            </form>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+
+<!-- /.page-content -->

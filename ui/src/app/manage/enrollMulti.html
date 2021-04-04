@@ -1,0 +1,68 @@
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="col-sm-10 col-md-10">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                        <h1 class="box-title">Enrolamiento Batch con CSV                   
+                </h1>
+                    </div>
+                    <!-- /.box-header -->
+                    <div ng-class="{ alert:true, 'alert-danger':true }" ng-if="vm.hasErrors" role="alert">{{ vm.errorLabel }}</div>
+                    <div class="box-body">
+                        <div class="alert alert-info" role="alert">
+                            <strong>Formato:</strong> Correo, Cuenta LDAP, Celular, Nombre, Apellido
+                        </div>
+                        <form role="form" name="form" novalidate>
+                            <div class="form-group">
+
+                                <div class="row">
+                                    <label for="grupo">Grupo</label>
+
+                                    <select name="grupo" ng-model="formulario.group" class="form-control">
+                                        <option ng-repeat="item in vm.groups" value="{{item.group}}">{{item.group}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <label for="csv">CSV</label>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <textarea cols="52" rows="10" name="csv" ng-model="formulario.csv" required></textarea>
+                                        <div class="has-error" ng-if="form.$submitted || form.csv.$dirty" ng-messages="form.csv.$error">
+                                            <div class="help-block" ng-message="required">Requerido.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-sm-offset-1 col-md-offset-2">
+                                <button class="btn btn-sm btn-primary" ng-click="vm.save(form, formulario)">
+                                    <i class="icon-ok"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-sm-offset-1">
+                                <button class="btn btn-sm" ng-click="vm.cancel()">
+                                    <i class="icon-remove"></i> Cancelar
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- PAGE CONTENT ENDS -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+</div>
+<!-- /.page-content -->

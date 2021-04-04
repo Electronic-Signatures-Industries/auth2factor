@@ -1,0 +1,121 @@
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="col-sm-10 col-md-10">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                        <h1 class="box-title">Cuenta
+                <small>
+                <i class="fa fa-angle-double-right"></i>
+                    {{ vm.account || 'Nuevo' }}
+                </small>                    
+                </h1>
+                    </div>
+                    <!-- /.box-header -->
+                    <div ng-class="{ alert:true, 'alert-danger':true }" ng-if="vm.hasErrors" role="alert">{{ vm.errorLabel }}</div>
+                    <div class="box-body">
+                        <form role="form" name="form" novalidate>
+                            <div class="form-group" ng-if="!vm.canEdit">
+                                <label for="email">Correo Electrónico</label>
+                                <input class="form-control  input-sm" required type="text" ng-model="formulario.email" name="email" placeholder="Ingrese correo">
+                                <div class="has-error" ng-if="form.$submitted || form.email.$dirty" ng-messages="form.email.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>
+                            <!--
+                    <div class="form-group">
+                        <label for="ldapAccount">Cuenta LDAP</label>
+                        <input class="form-control  input-sm" type="text" ng-model="formulario.ldapAccount" name="ldapAccount" placeholder="Ingrese cuenta LDAP">
+                        <div class="has-error" ng-if="form.$submitted || form.ldapAccount.$dirty" ng-messages="form.ldapAccount.$error">
+                            <div class="help-block" ng-message="required">Requerido.</div>
+                        </div>
+                    </div>
+-->
+                            <div class="form-group">
+                                <label for="cellphone">Celular</label>
+                                <input class="form-control  input-sm" type="text" ng-pattern="/^[0-9]*$/" ng-maxlength="16" ng-model="formulario.cellphone" name="cellphone" placeholder="Ingrese celular (ejemplo: 50766001111)" required>
+                                <div class="has-error" ng-if="form.$submitted || form.cellphone.$dirty" ng-messages="form.cellphone.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                    <div class="help-block" ng-message="maxlength">Debe ser maximo 16 digitos.</div>
+                                    <div class="help-block" ng-message="pattern">Debe ser caracteres numericos.</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">Nombre</label>
+                                <input class="form-control  input-sm" type="text" ng-model="formulario.firstName" name="firstName" placeholder="Ingrese nombre">
+                                <div class="has-error" ng-if="form.$submitted || form.firstName.$dirty" ng-messages="form.firstName.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Apellido</label>
+                                <input class="form-control  input-sm" type="text" ng-model="formulario.lastName" name="lastName" placeholder="Ingrese apellido">
+                                <div class="has-error" ng-if="form.$submitted || form.lastName.$dirty" ng-messages="form.lastName.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="row">
+                                    <label for="grupo">Grupo</label>
+
+                                    <select name="grupo" ng-model="formulario.group" class="form-control input-sm">
+                                        <option ng-repeat="item in vm.groups" value="{{item.group}}">{{item.group}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <label for="serviceType">Opciones</label>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <div class="togglebutton">
+                                            <div ng-if="!vm.canEdit">
+                                                <label>
+                                                    <input type="checkbox" ng-model="formulario.hasConfirmation" name="hasConfirmation" checked=""><span class="toggle"></span> Debe Confirmar ?
+                                                </label>
+                                            </div>
+                                            <div ng-if="vm.canEdit && !formulario.inactive">
+                                                <label>
+                                                    <input type="checkbox" ng-model="formulario.resetAccount" name="resetAccount" checked=""><span class="toggle"></span> Restablecer
+                                                </label>
+                                            </div>
+                                            <div ng-if="formulario.inactive">
+                                                <label>
+                                                    <input type="checkbox" ng-model="formulario.enable" name="enable" checked=""><span class="toggle"></span> Activar
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-3 col-md-3 col-sm-offset-1 col-md-offset-2">
+                                        <button class="btn btn-sm btn-primary" ng-click="vm.save(form, formulario)">
+                                            <i class="icon-ok"></i> Guardar
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-sm-offset-1">
+                                        <button class="btn btn-sm" ng-click="vm.cancel()">
+                                            <i class="icon-remove"></i> Cancelar
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- PAGE CONTENT ENDS -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.page-content -->

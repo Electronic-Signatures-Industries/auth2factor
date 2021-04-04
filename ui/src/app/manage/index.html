@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12" ng:if="vm.stats.users">
+              <div class="info-box bg-aqua">
+                <span class="info-box-icon"><i class="fa fa-user"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Cuentas</span>
+                  <span class="info-box-number">{{ ::vm.stats.users.count }}</span>
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 100%"></div>
+                  </div>
+                  <span class="progress-description">
+                    {{ ::vm.stats.admins.count }} administrador(es)
+                  </span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div>
+<div class="col-md-4 col-sm-6 col-xs-12" ng:if="vm.stats.groups">
+              <div class="info-box bg-green">
+                <span class="info-box-icon"><i class="fa fa-group"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Grupos</span>
+                  <span class="info-box-number">{{ ::vm.stats.groups.count }}</span>
+
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div>
+<div class="col-md-4 col-sm-6 col-xs-12" ng:if="vm.stats.logs">
+              <div class="info-box bg-yellow">
+                <span class="info-box-icon"><i class="fa fa-table"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Bitácoras</span>
+                  <span class="info-box-number">{{ ::vm.stats.logs.count }}</span>
+
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div>
+          </div>
+
+<div class="row">
+<div class="content body">
+
+<section id="introduction">
+  <h2 class="page-header"><a href="#/manage#introduction">Sobre Auth2factor</a></h2>
+  <p class="lead">
+    Auth2factor es una solución de doble factor de autenticación OTP y U2F, la cual utiliza códigos de un solo uso (OTC: One Time Code) basados en el estándar RFC 6238 TOTP y de este modo compatibles con soft tokens como Google Authenticator y Microsoft Authenticator. Adicionalmente es compatible con llaves de seguridad U2F.
+  </p>
+</section><!-- /#introduction -->
+
+    <section id="docs">
+  <h2 class="page-header"><a href="#/manage#docs">Documentación</a></h2>
+  <p class="lead">
+      Documentación en linea <a href="http://docs.auth2factor.com">version 2.0</a>
+  </p>
+</section><!-- /#introduction -->
+
+    <section id="api">
+  <h2 class="page-header"><a href="#/manage#api">Documentación Técnica</a></h2>
+  <p class="lead">
+    APIs y SDKs
+  </p>
+    <ul>
+        <li><a href="api/api_docs#">API</a>
+        </li>
+        <li><a href="https://github.com/molekilla">SDK</a>
+        </li>
+        </ul>
+</section><!-- /#introduction -->
+
+<section id="license">
+  <h2 class="page-header"><a href="#/manage#license">Licencia</a></h2>
+    <h3>Entidad: {{ ::vm.stats.license.Company }}</h3>
+    <h4>Contacto: {{ ::vm.stats.license['Licensed To'] }}</h4>
+  <p>
+Cantidad: {{ ::vm.stats.license['Number of Users Licensed'] }} licencias de usuarios  </p>
+</section>
+
+
+        </div>
+
+</div>

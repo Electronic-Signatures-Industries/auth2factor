@@ -1,0 +1,32 @@
+{
+    "apiServer": {
+        "host": "localhost",
+        "port": 3002
+    },
+    "logger": {
+        "filename": "logs/dev.log",
+        "level": "silly"
+    },
+    "secrets": {
+        "rfc": "totp",
+        "issuer": "auth2factor",
+        "apiToken": "x"
+    },
+    "license": {
+        "algorithm": "RSA-SHA512",
+        "public": "af.pub"
+    },
+    "nodemailer": {
+        "user": "autentifactor",
+        "apiKey": "x"
+    },
+    "sendgrid": {
+        "user": "autentifactor",
+        "apiKey": "x"
+    },
+    "aws": {
+        "region": "us-east-1",
+        "gcm": "arn:aws:sns:us-east-1:653861443478:app/GCM/a2f",
+        "apns": "__"
+    }
+}

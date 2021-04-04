@@ -1,0 +1,7 @@
+{
+  "mongo": {
+    "host": "localhost",
+    "db": "auth2factor",
+    "port": "27017"
+  }
+}

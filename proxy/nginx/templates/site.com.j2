@@ -1,0 +1,77 @@
+#upstream rutha {
+#  server localhost:300
+#}
+
+server {
+  # Enforce the use of HTTPS
+  #listen 80 default_server;
+  #server_name *.{{ domain }};
+  #return 301 https://{{ domain }}$request_uri;
+}
+
+server {
+listen 80 default_server;
+    #listen {{ https_port }} default_server ssl;
+    server_name {{ domain }};
+    # root /home/{{ ansible_ssh_user }}/apps/{{ app_name }}/ui/dist;
+    # index index.html index.htm index.php;
+      
+    access_log /var/log/nginx/{{ domain }}.log;
+    error_log  /var/log/nginx/{{ domain }}-error.log error;
+
+    charset utf-8;
+
+    include h5bp/basic.conf;
+
+    #ssl_certificate           /etc/nginx/ssl/{{ ssl_name }}.crt;
+    #ssl_certificate_key       /etc/nginx/ssl/{{ ssl_name }}.key;
+    #include h5bp/directive-only/ssl.conf;
+    
+    gzip on;
+    gzip_comp_level 5;
+    gzip_vary on;
+    gzip_min_length  1024;
+    gzip_proxied any;
+    gzip_types text/plain  text/css application/json application/font-woff 
+                                    application/x-font-ttf application/javascript text/javascript;
+    gzip_buffers 16 8k;    
+
+    # proxy_redirect          http://fonts.gstatic.com $scheme://fonts.gstatic.com;
+    
+    location ~ ^/dist/(img/|css/|js/|vendor/|fonts/*?\.(?:ttf|ttc|otf|eot|woff|woff2)|robots.txt|humans.txt) {
+      root /home/{{ ansible_ssh_user }}/apps/{{ app_name }}/ui;
+     # expires 5d;
+      access_log off;
+      add_header Cache-Control "public";
+    }
+    
+
+    
+    location /api {
+      proxy_pass_request_headers    on;
+      proxy_set_header        Host $host;
+      proxy_set_header        X-Real-IP $remote_addr;
+      proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header        X-Forwarded-Proto $scheme;
+      proxy_pass          http://127.0.0.1:{{ local_api_port }};
+      proxy_read_timeout  90;
+
+      proxy_redirect      default;
+    }
+    
+    location / {
+    
+      proxy_set_header        Host $host;
+      proxy_set_header        X-Real-IP $remote_addr;
+      proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header        X-Forwarded-Proto $scheme;
+      proxy_pass          http://127.0.0.1:{{ local_fe_port }};
+      proxy_read_timeout  90;
+
+      proxy_redirect      default;
+    }
+
+    location = /favicon.ico { log_not_found off; access_log off; }
+    location = /robots.txt  { log_not_found off; access_log off; }
+
+}

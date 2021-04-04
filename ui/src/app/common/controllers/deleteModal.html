@@ -1,0 +1,10 @@
+<div class="container-fluid">
+        <div class="row">{{ vm.displayQuestion }} <strong> '{{ vm.displayLabel }}'</strong>?</div>
+        <div class="row"></div>
+        <div class="row">
+            <div class="pull-right">
+<button ng-click="closeThisDialog()">{{ vm.closeLabel }}</button>
+    <button ng-click="confirm()">{{ vm.confirmLabel }}</button>
+            </div>
+        </div>
+    </div>

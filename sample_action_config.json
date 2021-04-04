@@ -1,0 +1,36 @@
+{
+    "type":"activation",
+    "admin": {
+        "email": "molekilla@gmail.com",
+        "cellphone": "66731138",
+        "password":"0123456789"
+    },
+    "configs":[
+        {
+            "entity": "transport",
+            "key": "DEMO:sendgrid",
+            "description": "Cuenta de Sendgrid de Autentifactor",
+            "entityId": "email:sendgrid",
+            "settings": {
+                "user": "autentifactor",
+                "apiKey": "af2f@2015"
+            }
+        },
+        {
+            "entity": "adapter",
+            "key": "db:adapter",
+            "description": "Sistema",
+            "entityId": "default",
+            "deletable": "false"
+        },
+        {
+            "key": "default:system:env",
+            "description": "default system transports",            
+            "settings": {
+                "emailTransport": "DEMO:sendgrid",
+                "resetConfirmCodeTransport": "DEMO:sendgrid",
+                "confirmationTokenTimeout": 1800
+            }        
+        }        
+    ]
+}

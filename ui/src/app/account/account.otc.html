@@ -1,0 +1,39 @@
+<div class="container">
+
+    <div class="login-box">
+        <div class="login-logo">
+            <h1 class="logo-white-bg">Demo</h1>
+        </div>
+        <div>
+            <div ng-class="{ alert:true, 'alert-danger':true }" ng-if="$ctrl.hasErrors" role="alert">{{ $ctrl.errorLabel }}</div>
+            <div ng-class="{ alert:true, 'alert-warning':true }" ng-if="$ctrl.otcRequestLabel" role="alert">{{ $ctrl.otcRequestLabel }}</div>
+            <!-- /.login-logo -->
+            <div class="panel panel-default">
+                <div class="panel-heading credentials-header">
+                    <strong>Ingrese doble factor</strong>
+                </div>
+                <div class="panel-body credentials-body">
+
+
+                    <form role="form" name="form" novalidate>
+                        <div class="form-group">
+                            <input autocomplete="off" type="text" ng-model="formulario.otp" ng-minlength="6" name="otp" class="form-control" required>
+                            <div class="has-error" ng-if="form.$submitted || form.otp.$dirty" ng-messages="form.otp.$error">
+                                <div class="help-block" ng-message="required">Requerido.</div>
+                                <div class="help-block" ng-message="minlength">Campo debe contener al menos 6 caracteres.</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm" ng-click="$ctrl.authenticate(form, formulario)">Verificar</button>
+                        <div class="request-otc-link">
+                            <p><a href="" ng-click="$ctrl.requestOtc()">Reenviar código</a></p>
+                        </div>
+                        <hr ng-if="$ctrl.isU2F">
+                        <div ng-if="$ctrl.isU2F">
+                            <button class="btn btn-primary btn-sm" ng-click="$ctrl.requestU2FLogin()">Ingrese llave de seguridad</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

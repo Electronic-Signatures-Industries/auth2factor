@@ -1,0 +1,119 @@
+<growl-notifications ng-if="vm.showInitLink"></growl-notifications>
+
+<div ng-repeat="(id, notification) in notifications track by id" ng-if="vm.showInitLink">
+    <growl-notification ttl="7000"><div ng-class="{ 'callout callout-success': notification.isSuccess , 'callout callout-danger': notification.isError}">{{ ::notification.message }}</div>
+    </growl-notification>
+</div>
+
+<div class="container" ng-if="vm.showOtc">
+    <div class="col-sm-5 col-sm-offset-2">
+        <h2>Ingrese Código</h2>
+        <div ng-class="{ alert:true, 'alert-danger':true }" ng-if="vm.hasErrors" role="alert">{{ vm.errorLabel }}</div>
+        <div ng-class="{ alert:true, 'alert-warning':true }" ng-if="vm.otcRequestLabel" role="alert">{{ vm.otcRequestLabel }}</div>
+        <form role="form" name="form" novalidate>
+            <div class="form-group">
+                <!--        <label>Codigo</label>-->
+                <input type="text" ng-model="formulario.otp" ng-minlength="6" name="otp" class="form-control input-sm" required>
+                <div class="has-error" ng-if="form.$submitted || form.otp.$dirty" ng-messages="form.otp.$error">
+                    <div class="help-block" ng-message="required">Requerido.</div>
+                    <div class="help-block" ng-message="minlength">Campo debe contener al menos 6 caracteres.</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm" ng-click="vm.authenticate(form, formulario)">Verificar</button>
+            <div class="request-otc-link">
+                <p><a href="" ng-click="vm.requestOtc()">Reenviar código</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="page-content" ng-if="!vm.showOtc">
+    
+    <div class="row" ng-if="vm.expired">
+        <div ng-class="{ alert:true, 'alert-danger':true }" role="alert">
+            {{ vm.errorLabel }}
+        </div>
+    </div>
+
+<div class="row">
+                <div ng-class="{ alert:true, 'alert-danger':true }" ng-if="vm.hasErrors" role="alert">{{ vm.errorLabel }}</div>
+<div class="col-md-12 col-xs-12" ng-if="vm.showInitLink"><a href="/logout">Ir a ingreso de sesión</a></div>
+            <!-- l column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Contraseña</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" name="form" novalidate>
+                  <div class="box-body">
+                    <div class="form-group">
+                        <label>Cuenta</label>
+                        <input type="text" ng-model="formulario.account" ng-readonly="true" ng-minlength="8" name="account" class="form-control input-sm">
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" ng-model="formulario.password" required ng-minlength="8" name="password" class="form-control input-sm">
+                        <div class="has-error" ng-if="form.$submitted || form.password.$dirty" ng-messages="form.password.$error">
+                            <div class="help-block" ng-message="required">Requerido.</div>
+                            <div class="help-block" ng-message="minlength">Campo debe contener al menos 8 caracteres.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirmar Contraseña</label>
+                        <input type="password" class="form-control input-sm" ng-model="formulario.passwordConfirmation" required name="passwordConfirmation" ng-minlength="8" ng-change="vm.passwordMatch(form)">
+                        <div class="has-error" ng-if="form.$submitted || form.passwordConfirmation.$dirty" ng-messages="form.passwordConfirmation.$error">
+                            <div class="help-block" ng-message="required">Requerido.</div>
+                            <div class="help-block" ng-message="minlength">Campo debe contener al menos 8 caracteres.</div>
+                            <div class="help-block" ng-message="nomatch">Contraseña no ha podido ser confirmada.</div>
+                        </div>
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                                <button class="btn btn-sm btn-primary" ng-click="vm.resetPassword(form, formulario)">
+                                    <i class="icon-ok"></i> Aplicar
+                                </button>
+                  </div>
+                </form>
+              </div><!-- /.box -->
+
+            </div><!--/.col (right) -->    
+            <!-- r column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">OTP</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                  <div class="box-body">
+                    <div class="row">
+                        <div class="qr"></div>
+                        <div class="qrVisibleCode">{{ visibleCode }}</div>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" ng-model="formulario.preferSoftToken" name="preferSoftToken" checked=""><span class="toggle"></span> Preferir soft token
+                      </label>
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                                                <button class="btn btn-sm btn-primary" ng-click="vm.resetOTC(form, formulario)">
+                                <i class="icon-ok"></i> Provisionar QR
+                            </button>
+                  </div>
+                </form>
+              </div><!-- /.box -->
+
+
+            </div><!--/.col (left) -->
+
+          </div>
+</div>
+<!-- /.page-content -->

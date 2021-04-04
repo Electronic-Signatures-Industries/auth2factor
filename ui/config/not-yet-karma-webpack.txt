@@ -1,0 +1,136 @@
+var webpackConfig = require('./config/webpack.test');
+
+module.exports = function (config) {
+    config.set({
+
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: '',
+
+
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['jasmine', 'fixture'],
+
+        // // list of files / patterns to load in the browser
+        // files: [
+        //     "node_modules/jquery/dist/jquery.js",
+        //     "node_modules/angular/angular.js",
+        //     "source/bower_components/lodash/lodash.js",
+        //     "source/bower_components/angular-translate/angular-translate.js",
+        //     "source/bower_components/angular-translate-loader-url/angular-translate-loader-url.js",
+        //     "source/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+        //     "source/bower_components/angularjs-autocomplete/build/angularjs-autocomplete.js",
+        //     "source/bower_components/angular-aside/dist/js/angular-aside.js",
+        //     "source/bower_components/moment/moment.js",
+        //     "source/bower_components/moment-timezone/moment-timezone.js",
+        //     "source/assets/js/common.js",
+        //     "source/assets/libs/colorpicker/bootstrap-colorpicker-module.js",
+        //     "source/bower_components/angular-simple-logger/dist/angular-simple-logger.js",
+        //     "source/bower_components/alertifyjs/dist/js/ngAlertify.js",
+        //     "source/bower_components/Chart.js/Chart.js",
+               "source/assets/libs/ng-table-to-csv/dist/ng-table-to-csv.min.js",
+        //     "source/bower_components/angular-google-maps/dist/angular-google-maps.js",
+        //     "source/bower_components/angular-chart.js/dist/angular-chart.js",
+        //     "source/assets/libs/angular-datatables/angular-datatables.min.js",
+        //     "source/bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js",
+        //     "source/bower_components/datatables/media/js/jquery.dataTables.js",
+        //     "source/assets/libs/datatables/dataTables.lightColumnFilter.min.js",
+        //     "source/assets/libs/angular-datatables/angular-datatables.light-columnfilter.min.js",
+        //     "source/bower_components/angular-bootstrap/ui-bootstrap.js",
+        //     "source/bower_components/angular-ui-sortable/sortable.js",
+        //     "source/bower_components/angular-ui-select/dist/select.js",
+        //     "source/bower_components/ui-router/release/angular-ui-router.js",
+        //     "source/bower_components/angular-sanitize/angular-sanitize.js",
+        //     "source/bower_components/angular-cookies/angular-cookies.js",
+        //     "source/bower_components/signalr/jquery.signalR.js",
+        //     "source/bower_components/angular-daterangepicker/js/angular-daterangepicker.js",
+        //     "source/bower_components/angular-signalr-hub/signalr-hub.js",
+        //     "source/bower_components/ngstorage/ngStorage.js",
+        //     "source/bower_components/angular-jquery-timepicker/src/timepickerdirective.js",
+        //     "source/bower_components/angular-web-notification/angular-web-notification.js",
+        //     "source/bower_components/angular-gridster/dist/angular-gridster.min.js",
+        //     "node_modules/angular-mocks/angular-mocks.js",
+        //     "source/app.js",
+        //     "source/app.**.js",
+        //     "source/shared/**/*.js",
+        //     "source/components/**/*.js",
+        //     "source/specs/**/*.js",
+        //     "source/specs/fixtures/*.json",
+        //     "source/specs/fixtures/*.html"
+        // ],
+
+        // list of files to exclude
+        exclude: [
+        ],
+
+
+
+        preprocessors: {
+            "source/app.js": ["coverage"],
+            "source/app.**.js": ["coverage"],
+            "source/shared/**/*.js": ["coverage"],
+            "source/components/**/*.js": ["coverage"],
+            './config/karma-test-shim.js': ['webpack', 'sourcemap'],
+            '**/*.html': ['html2js'],
+            '**/*.json': ['json_fixtures']
+        },
+
+        jsonFixturesPreprocessor: {
+            variableName: '__json__'
+        },
+
+        coverageReporter: {
+            type: 'html',
+            dir: 'coverage/'
+        },
+
+        files: [
+            { pattern: './config/karma-test-shim.js', watched: false }
+        ],
+
+        webpack: webpackConfig,
+
+        webpackMiddleware: {
+            stats: 'errors-only'
+        },
+
+        webpackServer: {
+            noInfo: true
+        },
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress', 'coverage'],
+
+
+        // web server port
+        port: 9876,
+
+
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
+
+
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
+
+
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: true,
+
+
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['PhantomJS'],
+
+
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: true,
+
+        // Concurrency level
+        // how many browser should be started simultanous
+        concurrency: Infinity
+    })
+}

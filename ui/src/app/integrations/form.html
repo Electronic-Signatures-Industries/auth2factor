@@ -1,0 +1,103 @@
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="col-sm-10 col-md-10">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                        <h1 class="box-title">{{ vm.typeLabel }}
+                <small>
+                <i class="fa fa-angle-double-right"></i>
+                    {{ vm.key || 'Nuevo' }}
+                </small>                    
+                </h1>
+                    </div>
+                    <!-- /.box-header -->
+                    <div ng-class="{ alert:true, 'alert-danger':true }" ng-if="vm.hasErrors" role="alert">{{ vm.errorLabel }}</div>
+                    <div class="box-body">
+                        <form role="form" name="form" novalidate>
+                            <div class="form-group" ng-if="!vm.canEdit">
+                                <label for="key">Llave</label>
+                                <input class="form-control  input-sm" type="text" ng-model="formulario.key" name="key" placeholder="Ingrese llave" maxlength="24"
+                                ng-pattern="/^[0-9a-zA-Z:_\.]+$/" required ng-readonly="true">
+                                <div class="has-error" ng-if="form.$submitted || form.key.$dirty" ng-messages="form.key.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                    <div class="help-block" ng-message="pattern">Solo puede incluir alfanuméricos, punto (.), rayita (_) y dos puntos (:).</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Descripción</label>
+                                <input class="form-control  input-sm" type="text" ng-model="formulario.description" name="description" placeholder="Ingrese descripcion"
+                                required>
+                                <div class="has-error" ng-if="form.$submitted || form.description.$dirty" ng-messages="form.description.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="u2fAppId">U2F AppID</label>
+                                <input class="form-control  input-sm" type="text" 
+                                ng-model="formulario.settings.u2fAppId" name="u2fAppId" placeholder="Ingrese AppID (ej. http://dominio)"
+                                required>
+                                <div class="has-error" ng-if="form.$submitted || form.u2fAppId.$dirty" ng-messages="form.u2fAppId.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                </div>
+                            </div>   
+                            <div class="form-group">
+                                <label for="acl">Permisos</label>
+  <ui-select multiple ng-model="formulario.settings.acl.items" 
+  theme="bootstrap" close-on-select="false" style="width: 300px;" title="ACL">
+    <ui-select-match placeholder="Seleccione permiso...">{{$item}}</ui-select-match>
+    <ui-select-choices repeat="acl in vm.acls | filter:$select.search">
+      {{acl}}
+    </ui-select-choices>
+  </ui-select>                                
+                            </div>
+                            <div class="form-group">
+                                <label for="ip">IP</label>
+                                <input class="form-control  input-sm" ng-pattern="/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/"
+                                type="text" ng-model="formulario.settings.ip" name="ip" placeholder="Ingrese IP" required>
+                                <div class="has-error" ng-if="form.$submitted || form.ip.$dirty" ng-messages="form.ip.$error">
+                                    <div class="help-block" ng-message="required">Requerido.</div>
+                                    <div class="help-block" ng-message="pattern">Debe ser una dirección IP (ej: 10.0.0.1).</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientSecret">OAuth2 Client Secret</label>
+                                <input type="text" class="form-control  input-sm" 
+                                ng-model="formulario.settings.clientSecret" name="clientSecret"
+                                ng-readonly="true"></input>
+                            </div>                            
+                            <div class="form-group">
+                                <label for="apiToken">Secreto</label>
+                                <textarea rows="5" class="form-control  input-sm" 
+                                ng-model="formulario.settings.apiToken" name="apiToken"
+                                ng-readonly="true"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-3 col-md-3 col-sm-offset-1 col-md-offset-2">
+                                        <button class="btn btn-sm btn-primary" ng-click="vm.save(form, formulario)">
+                                            <i class="icon-ok"></i> Guardar
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-sm-offset-1">
+                                        <button class="btn btn-sm" ng-click="vm.cancel()">
+                                            <i class="icon-remove"></i> Cancelar
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- PAGE CONTENT ENDS -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.page-content -->

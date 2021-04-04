@@ -1,0 +1,13 @@
+
+{
+  "spec_dir": "spec",
+  "spec_files": [
+    "controllers/users/users_spec.js",
+    "controllers/management/transports_spec.js",
+    "controllers/management/adapter_spec.js",
+    "controllers/oauth2/*_spec.js"
+  ],
+  "helpers": [
+    "helpers/**/*.js"
+  ]
+}

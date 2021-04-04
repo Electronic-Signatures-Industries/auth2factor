@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-lg-11 col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Configuraciones</h3>
+            </div>
+            <!-- /.box-header -->
+
+
+            <div class="box-body no-padding">
+
+<div grid-toolbar source="vm.tableParams" refresh="vm.refresh">
+    <ul class="nav nav-pills pull-left">
+        <li>
+                            <button class="btn btn-primary" href="" ng-click="vm.add()">
+                                <strong>Agregar configuración</strong>
+                            </button>            
+        </li>
+<!--
+        <li>
+            <a href="" ng-click="vm.add('adapter')">
+                <i class="fa fa-plus"></i>&nbsp; Crear adaptador
+            </a>
+        </li>            
+-->
+        <li>
+                            <button class="btn btn-primary" href="" ng-click="vm.add('transport')">
+                                <strong>Agregar transporte</strong>
+                            </button>            
+        </li>                                               
+    </ul>
+</div>
+            <div ng-show="vm.configuration.length == 0">
+                <h3>No hay configuraciones</h3>
+            </div>
+<table ng-table="vm.tableParams" class="table table-responsive" ng-show="vm.configuration.length > 0">
+    <colgroup>
+        <col width="140px" />
+        <col width="140px" />
+        <col width="60px" />
+        <col width="120px" />
+        <col width="100px" />
+    </colgroup>
+    <tr ng-repeat="item in $data">
+        <td title="'ID'" filter="{ key: 'text'}" sortable="'key'">
+            {{ item.key }}</td>
+        <td title="'Descripción'" filter="{ description: 'text'}" sortable="'description'">
+            {{ item.description }}</td>
+        <td title="'Tipo'" filter="{ 'entity': 'text'}" sortable="'entity'">
+            <span ng-class="{ label: true, 'label-primary': item.entity === 'config', 'label-info': item.entity === 'transport', 'label-success': item.entity === 'adapter' }">{{ item.entity }}</span></td>
+        <td title="'Creado'" filter="{ created: 'text'}" sortable="'created'">
+            {{ item.created | date: 'dd/MM/yyyy hh:mm' }}</td>
+        <td>
+            <ul class="nav nav-pills pull-left">
+                <li>
+                <button class="btn btn-sm btn-default" ng-click="vm.edit(item)">
+                  <i class="fa fa-pencil-square-o"></i>
+                </button>
+                </li>
+                <li ng-show="item.deletable">
+                <button class="btn btn-sm btn-default" ng-click="vm.delete(item)">
+                  <i class="fa fa-remove"></i>
+                </button>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+              </div>
+        </div>
+    </div>

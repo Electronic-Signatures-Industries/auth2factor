@@ -1,0 +1,33 @@
+growl-notifications{
+
+    
+  position: fixed;
+  top: 150px;
+  right: 10px;
+    background: #fff;
+    z-index: 100;
+}
+
+
+
+growl-notification {
+
+  padding: 15px 30px;
+  margin-bottom: 15px;
+    font-weight: 700;
+    
+}
+
+growl-notification .callout-danger {
+  border-color: #c23321;
+}
+growl-notification .callout-warning {
+  border-color: #c87f0a;
+}
+growl-notification .callout-info {
+  border-color: #0097bc;
+}
+growl-notification .callout-success {
+    background-color: #00a65a !important;
+  border-color: #00733e;
+}
